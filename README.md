@@ -28,7 +28,7 @@ Develop a Java application that:
 #### Verification and Decryption
 - Decrypt the PDF file and validate that it matches the original file.
 
-#### Database Storage
+#### database Storage
 - Store basic information about each document in a database, including:
   - Document name.
   - Path or reference to the encrypted file.

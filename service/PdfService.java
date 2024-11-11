@@ -1,16 +1,20 @@
 package service;
 
-import model.PdfMetadata;
 import database.DatabaseConnection;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class PdfService {
-    private final DatabaseConnection databaseConnection;
 
-    public PdfService() {
+    private final DatabaseConnection databaseConnection;
+    private final EncryptionService encryptionService;
+    //private final SignatureService signatureService;
+
+    public PdfService() throws Exception {
+        //this.signatureService = new SignatureService();
+        this.encryptionService = new EncryptionService();
         this.databaseConnection = new DatabaseConnection();
+
     }
 
     public void processPdf(String pdfPath) throws Exception {

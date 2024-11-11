@@ -1,4 +1,4 @@
-package model;
+package com.example.model;
 
 public class PdfMetadata {
     private String name;

@@ -1,8 +1,10 @@
-package controller;
+package com.example.controller;
 
-import service.PdfService;
+import com.example.service.PdfService;
 import java.util.Scanner;
 
+
+//TODO: Create DecryptionService, integrate keys for bot services by user.
 public class PdfController {
     private final PdfService pdfService;
     /// Constructor initializes the PdfService instance
@@ -17,6 +19,9 @@ public class PdfController {
         String pdfPath = scanner.nextLine();
         // Close the scanner to free up resources
         scanner.close();
+        if (pdfPath.startsWith("\"") && pdfPath.endsWith("\"")) {
+            pdfPath= pdfPath.substring(1, pdfPath.length() - 1);
+        }
         try {
             // Process the PDF file using the PdfService
             pdfService.processPdf(pdfPath);

@@ -1,4 +1,4 @@
-package service;
+package com.example.service;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
@@ -9,13 +9,8 @@ import java.security.SecureRandom;
 public class EncryptionService {
     private final SecretKey aesKey;
 
-    public EncryptionService() throws Exception {
-        // Initialize a KeyGenerator instance for the AES encryption algorithm
-        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        // Configure the key generator to produce a 256-bit AES key
-        keyGen.init(256);
-        // Generate the AES encryption key and store it in the aesKey variable
-        aesKey = keyGen.generateKey();
+    public EncryptionService(byte[] aesKeyBytes) throws Exception {
+        this.aesKey = new SecretKeySpec(aesKeyBytes, "AES");
     }
 
     /// Return the encrypted data

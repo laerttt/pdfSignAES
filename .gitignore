@@ -11,6 +11,10 @@
 # BlueJ files
 *.ctxt
 
+# Ignore Maven target directory
+target/
+
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

@@ -48,7 +48,7 @@ public class EncryptionService {
             fos.write(encryptedContent);
         }
         // Return the temporary file containing the encrypted PDF content
-        System.out.println("Saved at => " + tempFile.getPath());
+        System.out.println("\nSaved at => " + tempFile.getPath()+"\n");
         return tempFile;
     }
 }

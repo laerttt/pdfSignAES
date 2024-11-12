@@ -1,22 +1,17 @@
 package com.example.controller;
 
+import com.example.service.DecryptionService;
 import com.example.service.PdfService;
 import java.util.Scanner;
 
 public class PdfController {
-    private PdfService pdfService;
-
-    /// Constructor initializes the PdfService instance
+    // Redundant
     public PdfController() throws Exception {
-        this.pdfService = new PdfService();
     }
-
-    public PdfController(String key) throws Exception {
-        this.pdfService = new PdfService(key);
-    }
-
     /// Method to handle PDF processing by prompting the user for input
-    public void handlePdfProcessing() {
+    public void handlePdfProcessing() throws Exception {
+        // Use normal (encrypting) pdf service constructor
+        PdfService pdfService = new PdfService();
         // Read PDF file path from input
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the path of the PDF file: ");
@@ -48,14 +43,18 @@ public class PdfController {
         System.out.print("Enter AES key (Base 64): ");
         String aesKey = input.nextLine();
 
+        // call pdfService (decrypting constructor)
+        PdfService pdfService = new PdfService(aesKey);
         // Prompt for encrypted file path
         System.out.print("\nEnter encrypted file path: ");
-        String path = input.nextLine();
-
+        String inPath = input.nextLine();
+        //Promt for output location
+        System.out.print("\nEnter output file path: ");
+        String outPath = input.nextLine();
         // Close the scanner to free up resources
         input.close();
 
         // Call the decrypt method in PdfService to decrypt the file
-        pdfService.decrypt();
+        pdfService.decrypt(inPath, outPath);
     }
 }

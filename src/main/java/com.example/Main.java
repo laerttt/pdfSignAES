@@ -17,7 +17,7 @@ public class Main {
             PdfController controller = new PdfController();
             controller.handlePdfProcessing();
         } else if (input == 2) {
-            // Initialize PdfController and handle PDF decryption
+            // Initialize PdfController and handle PDF decrypting
             PdfController controller = new PdfController();
             controller.handleDecrypting();
         } else {

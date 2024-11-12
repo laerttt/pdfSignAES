@@ -4,6 +4,7 @@ import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Base64;
 import java.security.SecureRandom;
 
 public class EncryptionService {
@@ -17,7 +18,10 @@ public class EncryptionService {
         keyGen.init(256);
         // Generate the AES encryption key and store it in the aesKey variable
         aesKey = keyGen.generateKey();
-        System.out.println("\n### GENERATED AES KEY => " + aesKey + "\n");
+
+        // FOR DEBUGGING PURPOSES
+        String encodedKey = Base64.getEncoder().encodeToString(aesKey.getEncoded());
+        System.out.println("AES Key (Base64): " + encodedKey);
     }
 
     public EncryptionService(byte[] aesKeyBytes) throws Exception {
@@ -31,7 +35,6 @@ public class EncryptionService {
         // Initialize the cipher in encryption mode, using the generated AES key
         cipher.init(Cipher.ENCRYPT_MODE, aesKey);
         // Encrypt the input byte array and return the encrypted data
-        System.out.println("\n### CIPHER => " + cipher+ "\n");
         return cipher.doFinal(content);
     }
 
@@ -45,6 +48,7 @@ public class EncryptionService {
             fos.write(encryptedContent);
         }
         // Return the temporary file containing the encrypted PDF content
+        System.out.println("Saved at => " + tempFile.getPath());
         return tempFile;
     }
 }

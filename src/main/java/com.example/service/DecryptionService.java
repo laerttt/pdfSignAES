@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 public class DecryptionService {
     private final SecretKey aesKey;
@@ -15,9 +16,10 @@ public class DecryptionService {
      * Constructor to initialize the DecryptionService with an AES key.
      * This constructor allows initializing with a byte array representing the AES key.
      *
-     * @param aesKeyBytes byte array representing the AES encryption key
+     * @param aesKey string representing the AES encryption key in Base 64
      */
-    public DecryptionService(byte[] aesKeyBytes) throws Exception {
+    public DecryptionService(String aesKey) throws Exception {
+        byte[] aesKeyBytes = Base64.getDecoder().decode(aesKey);
         // Convert the byte array into a SecretKey object for AES decryption
         this.aesKey = new SecretKeySpec(aesKeyBytes, "AES");
     }
@@ -32,10 +34,8 @@ public class DecryptionService {
     public byte[] decrypt(byte[] encryptedContent) throws Exception {
         // Create a Cipher instance for AES decryption
         Cipher cipher = Cipher.getInstance("AES");
-
         // Initialize the cipher in decryption mode, using the stored AES key
         cipher.init(Cipher.DECRYPT_MODE, aesKey);
-
         // Decrypt the encrypted byte array and return the decrypted data
         return cipher.doFinal(encryptedContent);
     }

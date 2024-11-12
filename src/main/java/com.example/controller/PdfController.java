@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 //TODO: Create DecryptionService, integrate keys for bot services by user.
 public class PdfController {
-    private final PdfService pdfService;
+    private  final PdfService pdfService;
     /// Constructor initializes the PdfService instance
     public PdfController() throws Exception {
         this.pdfService = new PdfService();
+    }
+    public PdfController(int i){
+
     }
     /// Method to handle PDF processing by prompting the user for input
     public void handlePdfProcessing() {

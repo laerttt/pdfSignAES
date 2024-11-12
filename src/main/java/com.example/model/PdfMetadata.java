@@ -13,4 +13,12 @@ public class PdfMetadata {
     public String getPath() { return path; }
     public void setName(String name) { this.name = name; }
     public void setPath(String path) { this.path = path; }
+
+    @Override
+    public String toString() {
+        return "PdfMetadata {" +
+                "\nname='" + name + '\'' +
+                ", \npath='" + path + '\'' +
+                "\n}";
+    }
 }
